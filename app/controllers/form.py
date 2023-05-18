@@ -1,27 +1,29 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, Regexp, Length
 
 
 class RegisterForm(FlaskForm):
     nome = StringField("nome", validators=[DataRequired()])
     matricula = StringField(
-        "matricula",
+        "Matricula",
         validators=[
             DataRequired(),
             Regexp("\d", message="Matrícula deve conter somente digitos numéricos"),
         ],
     )
     email = StringField(
-        "email",
+        "Email",
         validators=[DataRequired(), Email(message="Inserir endereço de e-mail válido")],
     )
     senha = PasswordField(
+        "Senha",
         validators=[
             DataRequired(),
             Length(6, 20, message="Senhas com no mínimo 6 caracteres e máximo 20"),
         ]
     )
+    professor = BooleanField("É professor?")
     submit = SubmitField("Submeter formulário")
 
 
