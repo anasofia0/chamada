@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, Regexp, Length
 
 
 class RegisterForm(FlaskForm):
-    nome = StringField("nome", validators=[DataRequired()])
+    nome = StringField("Nome", validators=[DataRequired()])
     matricula = StringField(
         "Matricula",
         validators=[
@@ -23,8 +23,8 @@ class RegisterForm(FlaskForm):
             Length(6, 20, message="Senhas com no mínimo 6 caracteres e máximo 20"),
         ]
     )
-    professor = BooleanField("É professor?")
-    submit = SubmitField("Submeter formulário")
+    professor = BooleanField("Professor")
+    submit = SubmitField("Criar usuário")
 
 
 class LoginForm(FlaskForm):

@@ -1,19 +1,26 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 
-db:SQLAlchemy = SQLAlchemy()
+db: SQLAlchemy = SQLAlchemy()
 bootstrap = Bootstrap5()
+
+conn = sqlite3.connect("teste.db")
 
 
 def create_app():
     app = Flask(__name__)
 
+    app.config["SECRET_KEY"] = "env"
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///teste.db"
+
     # init
-    db.init_app(app)
+    # db.init_app(app)
     bootstrap.init_app(app)
 
-    from .controllers import blueprints
+    from .auth import blueprints
+
     app.register_blueprint(blueprints())
 
     return app
