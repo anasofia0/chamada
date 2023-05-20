@@ -16,12 +16,12 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///teste.db"
 
     # init
-    # db.init_app(app)
+    db.init_app(app)
     bootstrap.init_app(app)
 
-    from .auth import blueprints
+    from .auth.auth import bp
 
-    app.register_blueprint(blueprints())
+    app.register_blueprint(bp)
 
     return app
 

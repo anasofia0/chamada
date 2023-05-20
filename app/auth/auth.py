@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, session, redirect
+from flask import Blueprint, render_template, redirect
 from .form import RegisterForm, LoginForm
 from ..app import db
+from ..models.user import User  
 
 bp = Blueprint("auth", __name__)
 
@@ -18,8 +19,16 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        
-        #db.session.algumacoisa
 
+        user = User(matricula = form.matricula,
+                    nome = form.nome,
+                    email = form.email,
+                    professor = form.professor,
+                    senha = form.senha # eu sei!!!!!
+        )
+        
+        db.session.add(user)
+        db.session.commit()
         return redirect('/')
+    
     return render_template("register.html", form=form)
