@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content%}
-    <form>
+    <form method="post" action="{{ url_for('auth.login') }}">
         <div class="mx-auto p-2" style="width: 200px;">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Matrícula</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1">
+                <label for="matricula" class="form-label">Matrícula</label>
+                <input type="text" name="matricula" class="form-control" id="matricula">
             </div>
             <div>
-                <label for="inputPassword5" class="form-label">Senha</label>
-                <input type="password" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" name="senha" id="senha" class="form-control" aria-labelledby="passwordHelpBlock">
             </div>
             <div class="col-12">
                 <button class="btn btn-primary" type="submit">Entrar</button>
