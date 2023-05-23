@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Register{% endblock %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>bem vindo, {{ user.nome }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Registrar presença</h2>
+            <form method="post" action="{{ url_for('auth.register') }}">
+                <button type="submit" class="btn btn-primary">Registrar presença</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Ultimas presenças</h2>
+            <ul class="list-group">
+                {% for presence in presences %}
+                <li class="list-group-item">{{ presence.date }} - {{ presence.note }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

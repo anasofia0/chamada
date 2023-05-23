@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Register{% endblock %}
+{% block content%}
+
+<div class="mx-auto p-2" style="width: 200px;">
+    {{ render_form(form) }}
+</div>
+
+<!-- 
+    <form>
+        <div class="mx-auto p-2" style="width: 200px;">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Matrícula</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div>
+                <label for="inputPassword5" class="form-label">Senha</label>
+                <input type="password" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Criar usuário</button>
+            </div>
+        </div>
+    </form>
+-->
+{% endblock %}
