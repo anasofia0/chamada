@@ -71,7 +71,8 @@ Siga as instruções abaixo para executar a aplicação em um sistema limpo:
 6. Execute o seguinte comando para iniciar a aplicação:
 
    ```
-   python run.py
+   export FLASK_APP=app.app
+   flask run
    ```
 
 7. A aplicação estará disponível em http://localhost:5000.
