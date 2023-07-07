@@ -1,9 +1,22 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, Email, Regexp, Length
+from wtforms.validators import DataRequired, Length, Email, Regexp, ValidationError
+from wtforms.validators import Optional
+
+
+class ProfessorCodeCheck:
+    def __init__(self, message=None):
+        if not message:
+            message = "Incorrect code provided"
+        self.message = message
+
+    def __call__(self, form, field):
+        if form.professor.data and (not field.data or field.data != 'debugmode'):
+            raise ValidationError(self.message)
 
 
 class RegisterForm(FlaskForm):
+    # Your existing fields...
     nome = StringField("Nome", validators=[DataRequired()])
     matricula = StringField(
         "Matricula",
@@ -24,8 +37,20 @@ class RegisterForm(FlaskForm):
         ]
     )
     professor = BooleanField("Professor")
+    professor_code = StringField("Code for Professor", [Optional(), ProfessorCodeCheck()])
     submit = SubmitField("Criar usuário")
 
+
+
+class ProfessorCodeCheck:
+    def __init__(self, message=None):
+        if not message:
+            message = "Incorrect code provided"
+        self.message = message
+
+    def __call__(self, form, field):
+        if form.professor.data and field.data != 'debugmode':
+            raise ValidationError(self.message)
 
 class LoginForm(FlaskForm):
     matricula = StringField(
