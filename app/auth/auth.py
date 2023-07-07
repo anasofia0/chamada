@@ -27,7 +27,8 @@ def login():
 
         # se passar no teste, faz o login e salva a sessão
         login_user(user, remember=remember)
-        return render_template("loggedIn.html", user=user) # se o login for bem sucedido, redireciona para a dashboard
+        return redirect("/home")
+        # return render_template("loggedIn.html", user=user) # se o login for bem sucedido, redireciona para a dashboard
     return render_template("login.html")  
 
 @bp.route("/register", methods=["GET", "POST"])

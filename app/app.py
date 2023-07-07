@@ -23,6 +23,7 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         from .models.user import User
+
         db.create_all()
     bootstrap.init_app(app)
 
@@ -33,17 +34,24 @@ def create_app():
     from .auth.auth import bp
 
     app.register_blueprint(bp)
+    
+    from .controllers import bp
+
+    app.register_blueprint(bp)
 
     return app
 
 
 app = create_app()
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
 @login_manager.user_loader
 def load_user(user_id):
     from .models.user import User
+
     return User.query.get(user_id)

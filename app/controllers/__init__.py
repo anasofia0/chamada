@@ -1,2 +1,1 @@
-def blueprints():
-    pass
+from .main import bp
