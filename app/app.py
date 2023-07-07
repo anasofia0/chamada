@@ -14,7 +14,7 @@ def create_app():
     app = Flask(__name__)
 
     basedir = os.path.abspath(os.path.dirname(__file__))
-    db_path = os.path.join(basedir, '..', 'chamada.db')
+    db_path = os.path.join(basedir, '..', 'saas.db')
     login_manager.init_app(app)
     app.config["SECRET_KEY"] = "env"
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
@@ -25,6 +25,10 @@ def create_app():
         from .models.user import User
         db.create_all()
     bootstrap.init_app(app)
+
+    @app.context_processor
+    def inject_bootstrap():
+        return {'bootstrap': bootstrap}
 
     from .auth.auth import bp
 
